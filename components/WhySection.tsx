@@ -63,21 +63,20 @@ const WhySection = () => {
   return (
     <div className="w-full max-w-[96rem] mx-auto bg-[#F1F1F1] py-12 md:py-20 px-5 md:px-16">
 
-      {/* Heading */}
+  
       <h2 className="text-center text-3xl md:text-4xl font-medium text-[#242424] mb-14 md:mb-20">
         Why This Program is Different
       </h2>
 
-      {/* Content */}
       <div className="grid md:grid-cols-2 gap-10 items-center">
 
-        {/* LEFT */}
+    
         <div className="space-y-6 md:space-y-8">
 
           {data.map((item, index) => (
             <div key={index} className="flex items-center gap-4 md:gap-5">
               
-              {/* ICON CONTAINER (responsive control) */}
+           
               <div className="w-6 h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 flex-shrink-0">
                 {item.icon}
               </div>
@@ -88,7 +87,6 @@ const WhySection = () => {
             </div>
           ))}
 
-          {/* BUTTON */}
           <button className="relative top-6 w-[170px] md:w-[200px] h-[40px] md:h-[50px] lg:h-[55px] bg-black rounded-md text-white hover:bg-black/90 transition">
 
             <span className="absolute top-2 left-3 text-sm md:text-base">
@@ -117,7 +115,7 @@ const WhySection = () => {
           </button>
         </div>
 
-        {/* RIGHT IMAGE */}
+        
         <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] rounded-lg overflow-hidden">
           <Image
             src="/images/lady.png"

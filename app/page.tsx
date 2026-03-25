@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import WhySection from "@/components/WhySection";
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
   <Navbar />
   <Hero />
 </div>
+<WhySection/>
  </div>
   );
 }

@@ -53,7 +53,7 @@ const Hero = () => {
       />
 
      
-      <div className="relative z-10 h-full flex flex-col justify-between px-5 md:px-16 pt-14 pb-4 md:py-12 text-[#F1F1F1]">
+      <div className="relative z-10 h-full flex flex-col justify-between px-5 md:px-16 pt-14 pb-4 md:py-12 text-[#F1F1F1] max-w-[96rem] mx-auto">
 
         
         <div className="flex justify-end">
@@ -76,7 +76,7 @@ const Hero = () => {
         </div>
 
 <div className="mt-0 md:mt-0 md:absolute md:right-16 md:bottom-12 flex justify-end">
-  <button className="relative w-[140px] md:w-[160px] h-[60px] md:h-[60px] lg:h-[70px] bg-white/10 backdrop-blur-md rounded-lg   text-white hover:bg-white/20 transition">
+  <button className="relative w-[140px] md:w-[160px] h-[60px] md:h-[60px] lg:h-[70px] bg-white/10 backdrop-blur-md rounded-md   text-white hover:bg-white/20 transition">
 
 
     <span className="absolute top-3 left-4 text-sm md:text-base">

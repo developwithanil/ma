@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import WhySection from "@/components/WhySection";
 import Footer from "@/components/Footer";
+import Operate from "@/components/Operate";
 
 
 export default function Home() {
@@ -38,10 +39,11 @@ export default function Home() {
 ]
   return (
 <div className="min-h-screen flex flex-col">
-  <div className="flex flex-col">
+  <div className="flex flex-col h-screen">
   <Navbar />
   <Hero />
 </div>
+<Operate />
 <WhySection/>
 <AISection/>
 <WhoThisIsFor />

@@ -67,7 +67,7 @@ export default function Footer() {
               </SocialIcon>
             </div>
 
-            {/* Contact moved to the socials position (top-right) */}
+           
             <div className="lg:hidden text-right mt-1">
               <p className="text-xs font-medium text-white/70 mb-1">Contact</p>
               <div className="text-xs text-white/50 space-y-1 flex flex-col items-end">

@@ -1,10 +1,12 @@
 import AISection from "@/components/AISection";
 import CTASection from "@/components/CTASection";
+
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Testimonials from "@/components/Testimonials";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import WhySection from "@/components/WhySection";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -35,8 +37,8 @@ export default function Home() {
   },
 ]
   return (
- <div className="">
-  <div className="h-screen flex flex-col">
+<div className="min-h-screen flex flex-col">
+  <div className="flex flex-col">
   <Navbar />
   <Hero />
 </div>
@@ -45,6 +47,7 @@ export default function Home() {
 <WhoThisIsFor />
 <Testimonials data={testimonialData} />
 <CTASection />
+<Footer />
  </div>
   );
 }

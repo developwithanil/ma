@@ -1,4 +1,7 @@
+'use client'
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 type Course = {
   image: string;
@@ -40,13 +43,38 @@ const courses: Course[] = [
   },
 ];
 
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 export default function Operate() {
   return (
     <section className="w-full bg-[#E6E6E6] py-12 md:py-20 md:px-6 lg:px-12">
       <div className="max-w-[96rem] mx-auto px-5">
 
-   
-        <div className="flex flex-col gap-6">
+     
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col gap-6"
+        >
           <div className="max-w-xl">
             <h2 className="text-[32px] font-medium text-[#242424] leading-tight">
               Built for Operators, Not Observers
@@ -56,34 +84,32 @@ export default function Operate() {
             </p>
           </div>
 
-          <button className="relative top-6 w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-black rounded-md text-white hover:bg-black/90 transition">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative top-6 w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-black rounded-md text-white hover:bg-black/90 transition"
+          >
             <span className="absolute top-2 left-3 text-sm md:text-base">
               All Courses
             </span>
 
             <span className="absolute bottom-2 right-3">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M10 6.66675L13.3334 10.0001L10 13.3334"
-                  stroke="#F1F1F1"
-                  strokeWidth="1.33334"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329"
-                  stroke="#F1F1F1"
-                  strokeWidth="1.33334"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M10 6.66675L13.3334 10.0001L10 13.3334" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
-   
-        <div className="mt-10 w-full">
+     
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mt-10 w-full"
+        >
           <div
             className="
               grid gap-6 sm:gap-7
@@ -95,9 +121,13 @@ export default function Operate() {
           >
             {courses.map((c) => {
               return (
-                <div key={c.title} className="flex flex-col">
-
-                
+                <motion.div
+                  key={c.title}
+                  variants={item}
+                  whileHover={{ y: -6 }}
+                  className="flex flex-col"
+                >
+        
                   <div className="bg-white rounded-2xl p-3 shadow-sm">
                     <div className="flex justify-between text-[10px] text-[#6B6B6B] mb-2">
                       <span>Course</span>
@@ -118,26 +148,25 @@ export default function Operate() {
                     </p>
                   </div>
 
-             <div className="mt-2 md:mt-3 bg-white rounded-2xl p-4 shadow-sm flex flex-col h-full">
-  
-  <p className="text-[11px] text-[#6B6B6B]">
-    Module Overview
-  </p>
+                
+                  <div className="mt-2 md:mt-3 bg-white rounded-2xl p-4 shadow-sm flex flex-col h-full">
+                    <p className="text-[11px] text-[#6B6B6B]">
+                      Module Overview
+                    </p>
 
-  <p className="mt-1 text-[14px] text-[#242424] leading-relaxed">
-    {c.description}
-  </p>
+                    <p className="mt-1 text-[14px] text-[#242424] leading-relaxed">
+                      {c.description}
+                    </p>
 
-  <div className="mt-auto pt-3 text-[14px] font-semibold text-[#2B2B2B]">
-    Explore
-  </div>
-
-</div>
-                </div>
+                    <div className="mt-auto pt-3 text-[14px] font-semibold text-[#2B2B2B]">
+                      Explore
+                    </div>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

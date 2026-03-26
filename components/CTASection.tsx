@@ -1,17 +1,33 @@
 'use client'
 
+import { motion } from 'framer-motion'
+
 const CTASection = () => {
   return (
     <section className="w-full bg-[#E6E6E6]">
       <div className="max-w-[96rem] mx-auto px-5 md:px-16 py-16 md:py-24 text-center">
 
-        <h2 className="text-2xl md:text-4xl font-medium text-[#242424] mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-2xl md:text-4xl font-medium text-[#242424] mb-10"
+        >
           Start Your AI Transformation
-        </h2>
+        </motion.h2>
+
 
         <div className="flex justify-center">
-          <button className="relative w-[190px] h-[50px] bg-black text-white rounded-md">
-
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            className="relative w-[190px] h-[50px] bg-black text-white rounded-md"
+          >
             <span className="absolute top-2 left-4 text-sm">
               Apply Now
             </span>
@@ -22,8 +38,7 @@ const CTASection = () => {
                 <path d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329" stroke="#fff" strokeWidth="1.3" strokeLinecap="round"/>
               </svg>
             </span>
-
-          </button>
+          </motion.button>
         </div>
 
       </div>

@@ -3,6 +3,10 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
+interface HeroProps {
+  onApplyNow?: () => void
+}
+
 const container = {
   hidden: {},
   show: {
@@ -38,7 +42,7 @@ const StatsItem = ({ title, value }: { title: string; value: string }) => {
   )
 }
 
-const Hero = () => {
+const Hero = ({ onApplyNow }: HeroProps) => {
   return (
     <div className="relative flex-1 w-full overflow-hidden">
 
@@ -97,6 +101,7 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={onApplyNow}
             className="relative w-[140px] md:w-[160px] h-[60px] md:h-[60px] lg:h-[70px] bg-white/10 backdrop-blur-md rounded-md text-white hover:bg-white/20 transition"
           >
             <span className="absolute top-3 left-4 text-sm md:text-base">

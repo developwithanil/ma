@@ -3,6 +3,10 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 
+interface OurEdgeProps {
+  onApplyNow?: () => void
+}
+
 const data = [
   {
     title: "AI Revenue Systems",
@@ -24,7 +28,7 @@ const data = [
   },
 ]
 
-export default function OurEdge() {
+export default function OurEdge({ onApplyNow }: OurEdgeProps) {
   return (
     <section className="w-full bg-[#E6E6E6] py-16 md:py-24 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
@@ -59,6 +63,7 @@ export default function OurEdge() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={onApplyNow}
                     className="relative mt-6 w-[140px] h-[34px] bg-[#331568] rounded text-white text-[11px]"
                   >
                     <span className="absolute top-[6px] left-3">

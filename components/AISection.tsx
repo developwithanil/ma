@@ -3,7 +3,11 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const AISection = () => {
+interface AISectionProps {
+  onApplyNow?: () => void
+}
+
+const AISection = ({ onApplyNow }: AISectionProps) => {
   return (
     <div className="relative w-full h-[400px] md:h-[700px] overflow-hidden">
 
@@ -44,6 +48,7 @@ const AISection = () => {
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      onClick={onApplyNow}
       className="relative w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-white rounded-md text-[#371A6B] transition"
     >
       <span className="absolute top-2 left-3 text-sm md:text-base">

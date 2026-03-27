@@ -67,7 +67,11 @@ const item = {
   },
 };
 
-export default function Operate() {
+interface OperateProps {
+  onApplyNow?: () => void
+}
+
+export default function Operate({ onApplyNow }: OperateProps) {
   return (
     <section className="w-full bg-[#E6E6E6] py-12 md:py-20 md:px-6 lg:px-12">
       <div className="max-w-[96rem] mx-auto px-5">
@@ -92,6 +96,7 @@ export default function Operate() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={onApplyNow}
             className="relative top-6 w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-[#331568] rounded-md text-white hover:bg-black/90 transition"
           >
             <span className="absolute top-2 left-3 text-sm md:text-base">
@@ -174,6 +179,7 @@ export default function Operate() {
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      onClick={onApplyNow}
       className="w-full h-[40px] md:h-[45px] bg-[#331568] rounded-md text-white flex items-center justify-between px-4 transition hover:bg-black/90"
     >
       <span className="text-sm md:text-base">

@@ -2,6 +2,10 @@
 
 import { motion } from "framer-motion";
 
+interface MaxtronDifferenceProps {
+  onApplyNow?: () => void
+}
+
 const features = [
   {
     icon: <svg width="40" height="23" viewBox="0 0 40 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +34,7 @@ const features = [
   },
 ];
 
-export default function MaxtronDifference() {
+export default function MaxtronDifference({ onApplyNow }: MaxtronDifferenceProps) {
   return (
     <section className="w-full bg-[#F8F8F8] py-16 md:py-20 px-5">
       <div className="max-w-[96rem] mx-auto text-center">
@@ -72,6 +76,7 @@ export default function MaxtronDifference() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={onApplyNow}
             className="relative w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-[#331568] rounded-md text-white hover:bg-black/90 transition"
           >
             <span className="absolute top-2 left-3 text-sm md:text-base">

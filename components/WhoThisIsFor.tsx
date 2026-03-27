@@ -1,7 +1,11 @@
 'use client'
 import { motion } from 'framer-motion'
 
-const WhoThisIsFor = () => {
+interface WhoThisIsForProps {
+  onApplyNow?: () => void
+}
+
+const WhoThisIsFor = ({ onApplyNow }: WhoThisIsForProps) => {
   return (
     <section className="w-full bg-[#E6E6E6] border-y border-[#CFCFCF]">
       <div className="max-w-[96rem] mx-auto px-5 md:px-16">
@@ -44,6 +48,7 @@ const WhoThisIsFor = () => {
            <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={onApplyNow}
             className="relative top-6 w-[170px] md:w-[210px] h-[38px] md:h-[47px] lg:h-[53px] bg-[#331568] rounded-md text-white hover:bg-black/90 transition"
           >
             <span className="absolute top-2 left-3 text-sm md:text-base">

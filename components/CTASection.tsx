@@ -3,7 +3,11 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-const CTASection = () => {
+interface CTASectionProps {
+  onApplyNow?: () => void
+}
+
+const CTASection = ({ onApplyNow }: CTASectionProps) => {
   return (
     <section className="relative w-full h-[300px] md:h-[420px] overflow-hidden">
 
@@ -38,6 +42,7 @@ const CTASection = () => {
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
+              onClick={onApplyNow}
               className="relative w-[170px] md:w-[200px] h-[40px] md:h-[50px] bg-[#4B2A84] text-white rounded-md"
             >
               <span className="absolute top-2 left-3 text-sm md:text-base">

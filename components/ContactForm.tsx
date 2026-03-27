@@ -61,6 +61,7 @@ export default function ContactForm({ isOpen, onClose }: any) {
 
   useEffect(() => {
     if (!isOpen) return;
+    
 
     const script1 = document.createElement("script");
     script1.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";

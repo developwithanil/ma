@@ -12,10 +12,10 @@ const Navbar = () => {
       className="h-14 flex items-center px-6 md:px-10 bg-[#F1F1F1] z-20 max-w-[96rem] mx-auto w-full"
     >
       <Image
-        src="/images/logo.png"
+        src="/images/logo1.png"
         alt="logo"
-        width={40}
-        height={40}
+        width={200}
+        height={260}
         priority
       />
     </motion.div>

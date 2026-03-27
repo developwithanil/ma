@@ -177,7 +177,7 @@ export default function Operate() {
       className="w-full h-[40px] md:h-[45px] bg-[#331568] rounded-md text-white flex items-center justify-between px-4 transition hover:bg-black/90"
     >
       <span className="text-sm md:text-base">
-        All Courses
+        Apply Now
       </span>
 
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

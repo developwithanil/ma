@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 /* ─── animation variants ─── */
 const overlay = {
@@ -55,6 +57,7 @@ const SparklesIcon = () => (
 /* ─── main component ─── */
 export default function ContactForm({ isOpen, onClose }: any) {
   const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>("");
 
   useEffect(() => {
     if (!isOpen) return;
@@ -182,7 +185,21 @@ export default function ContactForm({ isOpen, onClose }: any) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                       <GlassInput id="NAME" name="NAME" label="Full Name" required maxLength={120} />
                       <GlassInput id="Email" name="Email" label="Email" type="email" required maxLength={100} />
-                      <GlassInput id="COBJ2CF24" name="COBJ2CF24" label="Phone" required maxLength={30} />
+                      {/* International Phone Input */}
+                      <div className="space-y-1.5">
+                        <label htmlFor="COBJ2CF24" className="block text-xs font-medium text-gray-400 tracking-wide">
+                          Phone<span className="text-indigo-400 ml-0.5">*</span>
+                        </label>
+                        <PhoneInput
+                          international
+                          defaultCountry="IN"
+                          value={phone}
+                          onChange={(val) => setPhone(val || "")}
+                          className="glass-phone-input"
+                        />
+                        {/* Hidden field syncs phone value to Zoho CRM */}
+                        <input type="hidden" id="COBJ2CF24" name="COBJ2CF24" value={phone || ""} />
+                      </div>
                       <GlassInput id="COBJ2CF23" name="COBJ2CF23" label="Location" required maxLength={255} />
                     </div>
                   </motion.div>
@@ -443,6 +460,59 @@ export default function ContactForm({ isOpen, onClose }: any) {
         select option {
           color: #1a1a2e;
           background: #ffffff;
+        }
+
+        /* ── International Phone Input dark theme ── */
+        .glass-phone-input {
+          display: flex !important;
+          align-items: center;
+          width: 100%;
+          padding: 8px 14px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,.08);
+          background: rgba(255,255,255,.04);
+          transition: all 0.3s;
+        }
+        .glass-phone-input:focus-within {
+          border-color: rgba(99,102,241,.5);
+          background: rgba(255,255,255,.07);
+          box-shadow: 0 0 0 3px rgba(99,102,241,.1), 0 0 20px rgba(99,102,241,.05);
+        }
+        .glass-phone-input .PhoneInputCountry {
+          margin-right: 10px;
+        }
+        .glass-phone-input .PhoneInputCountrySelect {
+          background: transparent;
+          color: #fff;
+          border: none;
+          outline: none;
+        }
+        .glass-phone-input .PhoneInputCountrySelect option {
+          color: #1a1a2e;
+          background: #ffffff;
+        }
+        .glass-phone-input .PhoneInputCountryIconImg {
+          width: 24px;
+          height: 16px;
+          border-radius: 2px;
+        }
+        .glass-phone-input .PhoneInputCountrySelectArrow {
+          color: rgba(255,255,255,.4);
+          border-color: rgba(255,255,255,.4);
+          opacity: 1;
+        }
+        .glass-phone-input input {
+          background: transparent !important;
+          border: none !important;
+          color: #fff !important;
+          font-size: 14px;
+          outline: none !important;
+          box-shadow: none !important;
+          padding: 4px 0 !important;
+          width: 100%;
+        }
+        .glass-phone-input input::placeholder {
+          color: rgba(255,255,255,.3);
         }
       `}</style>
     </AnimatePresence>

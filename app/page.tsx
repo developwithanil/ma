@@ -8,33 +8,67 @@ import WhoThisIsFor from "@/components/WhoThisIsFor";
 import WhySection from "@/components/WhySection";
 import Footer from "@/components/Footer";
 import Operate from "@/components/Operate";
+import MaxtronDifference from "@/components/MaxtronDifference";
+import OurEdge from "@/components/OurEdge";
 
 
 export default function Home() {
-  const testimonialData = [
+const testimonialData = [
   {
-    image: "/images/grant.png",
-    name: "Grant Gunderson",
-    designation: "Founder - Quantum Agency X",
-    button: "Private Equity & Venture Capital",
+    image: "/images/prashant.png",
+    name: "Prashant Kumar",
+    designation: "AI Product & Innovation Operator",
+    button: "Products & Execution",
     description:
-      "Maxtron has an outstanding work culture and process-based engagement model that helped us evolve from idea to execution. Their expertise is truly commendable.",
+      "Turns AI ideas into real, scalable products, building intelligent systems that improve workflows, user experience, and business performance.",
+  },
+  {
+    image: "/images/girish.png",
+    name: "Girish Ahirwar",
+    designation: "Founder | AI Transformation Leader",
+    button: "AI Strategy & Enterprise",
+    description:
+      "Helping businesses transition from traditional models to AI-first operations. Focused on real impact, efficiency, and scalable growth.",
+  },
+  {
+    image: "/images/ridha.png",
+    name: "Ridha Agarwal",
+    designation: "AI Growth & Adoption Strategist",
+    button: "AI Growth Specialist",
+    description:
+      "Drives AI adoption across markets. Focused on turning AI into growth, traction, and measurable business outcomes.",
   },
   {
     image: "/images/michael.png",
     name: "Michael Terpin",
     designation: "Godfather of Crypto",
-    button: "Technology",
+    button: "Blockchain Technology",
     description:
       "The Maxtron team is exceptionally skilled in dealing with advanced technology. They have delivered high-quality solutions and are completely equipped to tackle complex problems.",
   },
   {
-    image: "/images/anthony.png", // ⚠️ fix path (you had wrong earlier)
+    image: "/images/anthony.png",
     name: "Anthony Perkins",
     designation: "Founder And Editor Cryptonite",
-    button: "Media Publications",
+    button: "AI Leader",
     description:
       "The founders and the core team at Maxtron were exceptionally helpful throughout our collaboration. Their support and expertise enabled us to navigate multiple hurdles seamlessly.",
+  },
+  {
+    image: "/images/grant.png",
+    name: "Grant Gunderson",
+    designation: "Founder – Quantum Agency X",
+    button: "Private Equity & Venture Capital",
+    description:
+      "Maxtron has an outstanding work culture and process-based engagement model that helped us evolve from idea to execution. Their expertise is truly commendable.",
+  },
+  {
+    image: "/images/joyce.png",
+    name: "Joyce Chow",
+    designation: "Producer | Writer – Hollywood",
+    button: "Movies & Films",
+    description:
+      "Maxtron’s capacity to interplay with design, content and technology and cater the user in a unique way is all what you need.",
   },
 ]
   return (
@@ -44,8 +78,10 @@ export default function Home() {
   <Hero />
 </div>
 <Operate />
+<MaxtronDifference/>
 <WhySection/>
 <AISection/>
+<OurEdge/>
 <WhoThisIsFor />
 <Testimonials data={testimonialData} />
 <CTASection />

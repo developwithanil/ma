@@ -22,7 +22,7 @@ function SocialIcon({
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#1f1f1f] text-[#E9E9E9] border-t border-white/5">
+    <footer className="relative bg-[#14052E] text-[#E9E9E9] border-t border-white/5 py-10 lg:py-14">
       <div className="relative mx-auto max-w-7xl px-6 md:px-8 pt-10 md:pt-12 pb-28 md:pb-32">
 
        
@@ -30,12 +30,12 @@ export default function Footer() {
          
           <div className="flex items-start justify-between lg:block">
             <Image
-              src="/images/footerlogo.png"
+              src="/images/footerlogo1.png"
               alt="Maxtron Academy"
-              width={40}
-              height={40}
+              width={160}
+              height={200}
               priority
-              className="h-auto w-10"
+              className="h-auto "
             />
 
           
@@ -71,7 +71,7 @@ export default function Footer() {
             <div className="lg:hidden text-right mt-1">
               <p className="text-xs font-medium text-white/70 mb-1">Contact</p>
               <div className="text-xs text-white/50 space-y-1 flex flex-col items-end">
-                <div>+1 408-037-4444</div>
+                <div>+61 408-937-444</div>
                 <div>contact@maxtronacademy.com</div>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
         </div>
 
-     <div className="mt-14 md:mt-16 flex justify-center">
+     {/* <div className="mt-14 md:mt-16 flex justify-center">
         <div className="flex items-center gap-3">
           <SocialIcon label="Instagram">
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -135,15 +135,21 @@ export default function Footer() {
             </svg>
           </SocialIcon>
         </div>
-      </div>
+      </div> */}
        
    <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-full overflow-hidden">
   <div className="text-center text-[40px] sm:text-[60px] md:text-[80px] lg:text-[80px] xl:text-[96px] leading-none font-medium text-white/10 whitespace-nowrap">
     Maxtron Academy
   </div>
+  
 </div>
 
       </div>
+      <div className="mt-16 w-full border-t-[1px] border-[#F1F1F133] flex justify-left pl-6">
+  <p className="text-xs pt-4 text-white/40 text-center">
+    © {new Date().getFullYear()} Maxtron Academy · All rights reserved
+  </p>
+</div>
     </footer>
   );
 }

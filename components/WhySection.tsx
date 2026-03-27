@@ -12,7 +12,8 @@ const data = [
         <path d="M19.2501 5.5L13.5561 26.7504" stroke="black" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "Learn from Real Operators",
+   title: "Learn from Real Operators",
+    desc: "Built by practitioners who deploy AI inside real businesses not just theory or demos.",
   },
   {
     icon: (
@@ -31,6 +32,7 @@ const data = [
 </svg>
     ),
     title: "Execution-First Approach",
+    desc: "From strategy to live deployment, we focus on shipping working AI systems fast.",
   },
   {
     icon: (
@@ -46,7 +48,8 @@ const data = [
   <path d="M23.375 8.52661V5.38892H10.625V8.52661H2.125V28.6145H31.875V8.52661H23.375ZM12.0859 6.84985H21.9141V8.52329H12.0859V6.84985ZM30.4141 27.1536H3.58594V25.5333H30.4141V27.1536ZM30.4141 24.9987H3.58594V9.98755H30.4141V24.9987Z" fill="#39393A"/>
 </svg>
     ),
-    title: "Business-Focused, Not Technical",
+   title: "Business-Focused, Not Technical",
+    desc: "We solve revenue, cost, and efficiency problems—not just build complex models.",
   },
   {
     icon: (
@@ -55,78 +58,69 @@ const data = [
         <path d="M24 25V7" stroke="#626263" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     ),
-    title: "Faster, Outcome-Driven",
+      title: "Faster, Outcome-Driven",
+    desc: "Every solution is tied to measurable impact: time saved, cost reduced, growth unlocked.",
   },
 ]
 
 const WhySection = () => {
   return (
-    <div className="w-full max-w-[96rem] mx-auto bg-[#F1F1F1] py-12 md:py-20 px-5 md:px-16">
+    <section className="w-full bg-[#F3F3F3] py-12 md:py-20 px-5 md:px-16">
 
-  
-      <h2 className="text-center text-3xl md:text-4xl font-medium text-[#242424] mb-14 md:mb-20">
-        Why This Program is Different
-      </h2>
-
-      <div className="grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-[96rem] mx-auto">
 
     
-        <div className="space-y-6 md:space-y-8">
+        <h2 className="text-center text-[28px] md:text-[36px] font-medium text-[#0E061D] mb-10 md:mb-14">
+          You Are Our Priority
+        </h2>
 
-          {data.map((item, index) => (
-            <div key={index} className="flex items-center gap-4 md:gap-5">
-              
-           
-              <div className="w-6 h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 flex-shrink-0">
-                {item.icon}
-              </div>
+      
+        <div className="bg-[#ffffff] rounded-2xl p-4 sm:p-6 md:p-8 max-w-6xl mx-auto">
 
-              <p className="text-[#242424] text-sm md:text-lg leading-tight">
-                {item.title}
-              </p>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+
+          
+            <div className="relative w-full h-[260px] sm:h-[320px] md:h-[380px] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/lady.png"
+                alt="lady"
+                fill
+                className="object-cover"
+              />
             </div>
-          ))}
-
-          <button className="relative top-6 w-[170px] md:w-[200px] h-[40px] md:h-[50px] lg:h-[55px] bg-black rounded-md text-white hover:bg-black/90 transition">
-
-            <span className="absolute top-2 left-3 text-sm md:text-base">
-              Explore Courses
-            </span>
-
-            <span className="absolute bottom-2 right-3">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M10 6.66675L13.3334 10.0001L10 13.3334"
-                  stroke="#F1F1F1"
-                  strokeWidth="1.33334"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329"
-                  stroke="#F1F1F1"
-                  strokeWidth="1.33334"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-
-          </button>
-        </div>
 
         
-        <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] rounded-lg overflow-hidden">
-          <Image
-            src="/images/lady.png"
-            alt="lady"
-            fill
-            className="object-cover"
-          />
+            <div className="space-y-6 md:space-y-8">
+
+              {data.map((item, index) => (
+                <div key={index} className="flex items-start gap-4">
+
+                
+                  <div className="w-6 h-6 flex items-center justify-center text-[#5B3DF5]">
+                    {item.icon}
+                  </div>
+
+                
+                  <div>
+                    <p className="text-[14px] md:text-[15px] font-semibold text-[#0E061D]">
+                      {item.title}
+                    </p>
+
+                    <p className="text-[12px] text-[#6B6B6B] mt-1 leading-relaxed max-w-[420px]">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
         </div>
 
       </div>
-    </div>
+    </section>
   )
 }
 

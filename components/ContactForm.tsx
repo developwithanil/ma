@@ -18,7 +18,7 @@ const modal = {
     scale: 1,
     y: 0,
     opacity: 1,
-    transition: { type: "spring", damping: 28, stiffness: 300 },
+    transition: { type: "spring" as const, damping: 28, stiffness: 300 },
   },
   exit: { scale: 0.92, y: 50, opacity: 0, transition: { duration: 0.2 } },
 };

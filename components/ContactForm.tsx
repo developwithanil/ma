@@ -71,7 +71,104 @@ export default function ContactForm({ isOpen, onClose }: any) {
       "https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=348379178fd8992c6a0c5c78821b14fb6d38c92e3b4e2153c96668a9b337a7a0853638fdd445f3ad5f0183473cb98bdegid4ad9ac14fd8cadb4f62947149b30b88ae4b5c3aaec315f6b4c1e3572b3b6bc8fgidc0cab55e40bee59acc9f1b57cdbe9614e41841b1b2f34589a4c1391e5bd19bebgidd1d53af167864ac4bdb86558d32d0650201feced304f0ed2db310881ab7e837a";
 
     document.body.appendChild(script1);
-    script1.onload = () => document.body.appendChild(script2);
+    script1.onload = () => {
+      document.body.appendChild(script2);
+
+      // Inject Zoho CRM form submission logic after jQuery is available
+      const formScript = document.createElement("script");
+      formScript.textContent = `
+        function addAriaSelected989313000001929001(){
+          var optionElem = event.target;
+          var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
+          if (previousSelectedOption) { previousSelectedOption.removeAttribute('aria-selected'); }
+          optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
+        }
+        function validateEmail989313000001929001(){
+          var form = document.forms['WebForm989313000001929001'];
+          var emailFld = form.querySelectorAll('[ftype=email]');
+          for(var i = 0; i < emailFld.length; i++){
+            var emailVal = emailFld[i].value;
+            if((emailVal.replace(/^\\s+|\\s+$/g,'')).length != 0){
+              var atpos = emailVal.indexOf('@');
+              var dotpos = emailVal.lastIndexOf('.');
+              if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
+                alert('Please enter a valid email address.');
+                emailFld[i].focus();
+                return false;
+              }
+            }
+          }
+          return true;
+        }
+        function checkMandatory989313000001929001(){
+          var mndFileds = new Array('NAME','Email','COBJ2CF23','COBJ2CF24');
+          var fldLangVal = new Array('Full Name','Email','Location','Phone');
+          for(var i = 0; i < mndFileds.length; i++){
+            var fieldObj = document.forms['WebForm989313000001929001'][mndFileds[i]];
+            if(fieldObj){
+              if(((fieldObj.value).replace(/^\\s+|\\s+$/g,'')).length == 0){
+                if(fieldObj.type == 'file'){ alert('Please select a file to upload.'); fieldObj.focus(); return false; }
+                alert(fldLangVal[i] + ' cannot be empty.');
+                fieldObj.focus();
+                return false;
+              } else if(fieldObj.nodeName == 'SELECT'){
+                if(fieldObj.options[fieldObj.selectedIndex].value == '-None-'){
+                  alert(fldLangVal[i] + ' cannot be none.');
+                  fieldObj.focus();
+                  return false;
+                }
+              } else if(fieldObj.type == 'checkbox'){
+                if(fieldObj.checked == false){
+                  alert('Please accept ' + fldLangVal[i]);
+                  fieldObj.focus();
+                  return false;
+                }
+              }
+              try{ if(fieldObj.name == 'Last Name'){ name = fieldObj.value; } } catch(e){}
+            }
+          }
+          if(!validateEmail989313000001929001()) return false;
+          var urlparams = new URLSearchParams(window.location.search);
+          if(urlparams.has('service') && (urlparams.get('service') === 'smarturl')){
+            var webform = document.getElementById('webform989313000001929001');
+            var service = urlparams.get('service');
+            var smarturlfield = document.createElement('input');
+            smarturlfield.setAttribute('type','hidden');
+            smarturlfield.setAttribute('value',service);
+            smarturlfield.setAttribute('name','service');
+            webform.appendChild(smarturlfield);
+          }
+          document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled',true);
+          return true;
+        }
+        $(document).ready(function(){
+          $('#webform989313000001929001').submit(function(e){
+            var ismandatory = checkMandatory989313000001929001();
+            e.preventDefault();
+            if(ismandatory){
+              if(typeof _wfa_track != 'undefined' && _wfa_track.wfa_submit){ _wfa_track.wfa_submit(e); }
+              var formData = new FormData(this);
+              $.ajax({
+                url:'https://crm.zoho.in/crm/WebForm',
+                type:'POST',
+                data:formData,
+                cache:false,
+                contentType:false,
+                processData:false,
+                success:function(data){
+                  var splashinfodom = document.getElementById('wf_splash_info');
+                  if(splashinfodom) splashinfodom.innerText = data.actionvalue;
+                  document.getElementById('webform989313000001929001').reset.click();
+                  document.querySelector('.crmWebToEntityForm .formsubmit').removeAttribute('disabled');
+                },
+                error:function(data){ alert('An error occurred. Please try again.'); }
+              });
+            }
+          });
+        });
+      `;
+      document.body.appendChild(formScript);
+    };
 
     return () => {
       try { document.body.removeChild(script1); } catch {}
@@ -339,102 +436,6 @@ export default function ContactForm({ isOpen, onClose }: any) {
                   </motion.div>
                 </motion.div>
 
-                {/* Do not remove this code. — Form submission script */}
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                    function addAriaSelected989313000001929001(){
-                      var optionElem = event.target;
-                      var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
-                      if (previousSelectedOption) { previousSelectedOption.removeAttribute('aria-selected'); }
-                      optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
-                    }
-                    function validateEmail989313000001929001(){
-                      var form = document.forms['WebForm989313000001929001'];
-                      var emailFld = form.querySelectorAll('[ftype=email]');
-                      for(var i = 0; i < emailFld.length; i++){
-                        var emailVal = emailFld[i].value;
-                        if((emailVal.replace(/^\\s+|\\s+$/g,'')).length != 0){
-                          var atpos = emailVal.indexOf('@');
-                          var dotpos = emailVal.lastIndexOf('.');
-                          if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
-                            alert('Please enter a valid email address.');
-                            emailFld[i].focus();
-                            return false;
-                          }
-                        }
-                      }
-                      return true;
-                    }
-                    function checkMandatory989313000001929001(){
-                      var mndFileds = new Array('NAME','Email','COBJ2CF23','COBJ2CF24');
-                      var fldLangVal = new Array('Full Name','Email','Location','Phone');
-                      for(var i = 0; i < mndFileds.length; i++){
-                        var fieldObj = document.forms['WebForm989313000001929001'][mndFileds[i]];
-                        if(fieldObj){
-                          if(((fieldObj.value).replace(/^\\s+|\\s+$/g,'')).length == 0){
-                            if(fieldObj.type == 'file'){ alert('Please select a file to upload.'); fieldObj.focus(); return false; }
-                            alert(fldLangVal[i] + ' cannot be empty.');
-                            fieldObj.focus();
-                            return false;
-                          } else if(fieldObj.nodeName == 'SELECT'){
-                            if(fieldObj.options[fieldObj.selectedIndex].value == '-None-'){
-                              alert(fldLangVal[i] + ' cannot be none.');
-                              fieldObj.focus();
-                              return false;
-                            }
-                          } else if(fieldObj.type == 'checkbox'){
-                            if(fieldObj.checked == false){
-                              alert('Please accept ' + fldLangVal[i]);
-                              fieldObj.focus();
-                              return false;
-                            }
-                          }
-                          try{ if(fieldObj.name == 'Last Name'){ name = fieldObj.value; } } catch(e){}
-                        }
-                      }
-                      if(!validateEmail989313000001929001()) return false;
-                      var urlparams = new URLSearchParams(window.location.search);
-                      if(urlparams.has('service') && (urlparams.get('service') === 'smarturl')){
-                        var webform = document.getElementById('webform989313000001929001');
-                        var service = urlparams.get('service');
-                        var smarturlfield = document.createElement('input');
-                        smarturlfield.setAttribute('type','hidden');
-                        smarturlfield.setAttribute('value',service);
-                        smarturlfield.setAttribute('name','service');
-                        webform.appendChild(smarturlfield);
-                      }
-                      document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled',true);
-                      return true;
-                    }
-                    $(document).ready(function(){
-                      $('#webform989313000001929001').submit(function(e){
-                        var ismandatory = checkMandatory989313000001929001();
-                        e.preventDefault();
-                        if(ismandatory){
-                          if(typeof _wfa_track != 'undefined' && _wfa_track.wfa_submit){ _wfa_track.wfa_submit(e); }
-                          var formData = new FormData(this);
-                          $.ajax({
-                            url:'https://crm.zoho.in/crm/WebForm',
-                            type:'POST',
-                            data:formData,
-                            cache:false,
-                            contentType:false,
-                            processData:false,
-                            success:function(data){
-                              var splashinfodom = document.getElementById('wf_splash_info');
-                              if(splashinfodom) splashinfodom.innerText = data.actionvalue;
-                              document.getElementById('webform989313000001929001').reset.click();
-                              document.querySelector('.crmWebToEntityForm .formsubmit').removeAttribute('disabled');
-                            },
-                            error:function(data){ alert('An error occurred. Please try again.'); }
-                          });
-                        }
-                      });
-                    });
-                  `,
-                  }}
-                />
               </form>
             </div>
           </div>

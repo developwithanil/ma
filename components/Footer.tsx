@@ -145,7 +145,7 @@ export default function Footer() {
 </div>
 
       </div>
-      <div className="mt-16 w-full border-t-[1px] border-[#F1F1F133] flex justify-left pl-6">
+      <div className="mt-5 w-full border-t-[1px] border-[#F1F1F133] flex justify-left pl-6">
   <p className="text-xs pt-4 text-white/40 text-center">
     © {new Date().getFullYear()} Maxtron Academy · All rights reserved
   </p>

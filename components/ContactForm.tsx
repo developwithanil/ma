@@ -198,10 +198,14 @@ export default function ContactForm({ isOpen, onClose }: any) {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
-        style={{ background: "rgba(0,0,0,.5)" }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-hidden"
+        style={{ background: "rgba(14, 6, 29, 0.5)", backdropFilter: "blur(14px)" }}
         onClick={onClose}
       >
+        {/* Glowing Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#331568] rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#0279FF] rounded-full mix-blend-screen filter blur-[100px] opacity-20 pointer-events-none" style={{ animation: 'pulse 6s infinite alternate' }}></div>
+
         {/* Modal Card */}
         <motion.div
           key="modal"
@@ -210,11 +214,12 @@ export default function ContactForm({ isOpen, onClose }: any) {
           animate="visible"
           exit="exit"
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-[900px] max-h-[92vh] overflow-hidden rounded-2xl"
+          className="relative w-full max-w-[900px] max-h-[92vh] overflow-hidden rounded-[24px]"
           style={{
-            background: "#ffffff",
-            border: "1px solid #CFCFCF",
-            boxShadow: "0 25px 60px rgba(0,0,0,.15)",
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(253, 254, 255, 0.96) 100%)",
+            backdropFilter: "blur(24px)",
+            border: "1px solid rgba(255, 255, 255, 1)",
+            boxShadow: "0 20px 40px -10px rgba(14, 6, 29, 0.1), 0 0 0 1px rgba(14, 6, 29, 0.05) inset, 0 40px 80px -20px rgba(51, 21, 104, 0.15)",
           }}
         >
 
@@ -222,14 +227,14 @@ export default function ContactForm({ isOpen, onClose }: any) {
           <div className="relative z-10 overflow-y-auto max-h-[92vh] custom-scrollbar">
 
             {/* ── Header ── */}
-            <div className="sticky top-0 z-20 px-6 sm:px-8 py-5 flex items-center justify-between bg-white border-b border-[#CFCFCF]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
-                  style={{ background: "#331568" }}>
+            <div className="sticky top-0 z-20 px-6 sm:px-8 py-5 flex items-center justify-between border-b border-gray-100/80" style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(12px)" }}>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg"
+                  style={{ background: "#331568", boxShadow: "0 8px 16px -4px rgba(51, 21, 104, 0.3)" }}>
                   <SparklesIcon />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-[#0E061D] tracking-tight">Maxtron Academy</h2>
+                  <h2 className="text-[1.35rem] font-extrabold text-[#0E061D] tracking-tight leading-tight">Maxtron Academy</h2>
                   <p className="text-xs text-[#6B6B6B]">{submitted ? "Success" : "Fill in your details to get started"}</p>
                 </div>
               </div>
@@ -258,11 +263,11 @@ export default function ContactForm({ isOpen, onClose }: any) {
                     initial={{ scale: 0 }} 
                     animate={{ scale: 1 }} 
                     transition={{ type: "spring", delay: 0.1, stiffness: 200, damping: 20 }}
-                    className="w-24 h-24 mb-6 rounded-full bg-emerald-50 flex items-center justify-center" 
-                    style={{ border: "8px solid #F0FFF4" }}
+                    className="relative w-28 h-28 mb-8 flex items-center justify-center" 
                   >
-                    <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/30">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3.5}>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-emerald-400 to-cyan-400 rounded-full animate-pulse opacity-20 blur-xl"></div>
+                    <div className="relative w-20 h-20 bg-gradient-to-tr from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 border-4 border-white">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -281,11 +286,19 @@ export default function ContactForm({ isOpen, onClose }: any) {
                   </motion.p>
                   <motion.button
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     onClick={onClose}
-                    className="py-3.5 px-10 rounded-xl font-semibold text-white shadow-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
-                    style={{ background: "#331568", boxShadow: "0 10px 25px -5px rgba(51, 21, 104, 0.4)" }}
+                    className="relative w-[170px] md:w-[210px] h-[47px] lg:h-[53px] bg-[#331568] rounded-md text-white hover:bg-black/90 transition shadow-lg mt-4 mx-auto block"
                   >
-                    Done
+                    <span className="absolute top-2 left-3 text-sm md:text-[15px] font-medium tracking-wide">
+                      Done
+                    </span>
+                    <span className="absolute bottom-2 right-3">
+                      <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                        <path d="M10 6.66675L13.3334 10.0001L10 13.3334" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
                   </motion.button>
                 </motion.div>
               ) : (
@@ -314,8 +327,8 @@ export default function ContactForm({ isOpen, onClose }: any) {
                       <GlassInput id="NAME" name="NAME" label="Full Name" required maxLength={120} />
                       <GlassInput id="Email" name="Email" label="Email" type="email" required maxLength={100} />
                       {/* International Phone Input */}
-                      <div className="space-y-1.5">
-                        <label htmlFor="COBJ2CF24" className="block text-xs font-medium text-[#6B6B6B] tracking-wide">
+                      <div className="space-y-1.5 group">
+                        <label htmlFor="COBJ2CF24" className="block text-xs font-semibold text-[#6B6B6B] tracking-wide ml-1 transition-colors group-focus-within:text-[#331568]">
                           Phone<span className="text-red-500 ml-0.5">*</span>
                         </label>
                         <PhoneInput
@@ -434,32 +447,36 @@ export default function ContactForm({ isOpen, onClose }: any) {
                   <input type="text" name="aG9uZXlwb3Q" value="" style={{ display: "none" }} readOnly />
 
                   {/* ── Action Buttons ── */}
-                  <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4 mt-2">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       type="submit"
                       id="formsubmit"
-                      className="group relative flex-1 py-3.5 rounded-xl font-semibold text-white text-sm overflow-hidden transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
-                      style={{ background: "#331568" }}
+                      className="relative w-full sm:w-[210px] h-[53px] bg-[#331568] rounded-md text-white hover:bg-black/90 transition shadow-lg shrink-0 overflow-hidden"
                     >
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        Submit Application
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
-                          className="transition-transform duration-300 group-hover:translate-x-1">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      <span className="absolute top-2 left-3 text-[15px] font-medium tracking-wide">
+                        Submit
+                      </span>
+                      <span className="absolute bottom-2 right-3">
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                          <path d="M10 6.66675L13.3334 10.0001L10 13.3334" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M2.66626 2.66675V7.33342C2.66626 8.04067 2.94721 8.71894 3.44731 9.21903C3.9474 9.71914 4.62568 10.0001 5.33292 10.0001H13.3329" stroke="#F1F1F1" strokeWidth="1.33334" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </span>
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.02, backgroundColor: "#f8fafc" }} whileTap={{ scale: 0.98 }}
                       type="reset"
-                      className="py-3.5 px-8 rounded-xl font-medium text-sm text-[#6B6B6B] hover:text-[#0E061D] transition-all duration-200"
+                      className="h-[53px] px-10 rounded-md font-semibold text-[15px] text-[#6B6B6B] transition-all duration-300 hover:text-[#0E061D]"
                       style={{
-                        background: "#F3F3F3",
-                        border: "1px solid #CFCFCF",
+                        background: "rgba(249, 250, 251, 0.8)",
+                        border: "1px solid rgba(207, 207, 207, 0.6)",
                       }}
                     >
                       Reset
-                    </button>
-                  </motion.div>
+                    </motion.button>
+                  </div>
                 </motion.div>
 
               </form>
@@ -491,16 +508,21 @@ export default function ContactForm({ isOpen, onClose }: any) {
           display: flex !important;
           align-items: center;
           width: 100%;
-          padding: 8px 14px;
-          border-radius: 12px;
-          border: 1px solid #CFCFCF;
-          background: #F9F9F9;
-          transition: all 0.3s;
+          padding: 8px 16px;
+          border-radius: 14px;
+          border: 1px solid #E8E9EC;
+          background: #F8F9FB;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.02) inset;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-phone-input:hover {
+          border-color: #D1D5DB;
         }
         .glass-phone-input:focus-within {
           border-color: #331568;
-          background: #fff;
-          box-shadow: 0 0 0 3px rgba(51,21,104,.1);
+          background: #ffffff;
+          box-shadow: 0 4px 12px rgba(51, 21, 104, 0.08), 0 0 0 3px rgba(51, 21, 104, 0.15);
+          transform: translateY(-1px);
         }
         .glass-phone-input .PhoneInputCountry {
           margin-right: 10px;
@@ -542,10 +564,10 @@ export default function ContactForm({ isOpen, onClose }: any) {
 /* ─── Section Header ─── */
 function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
-    <div className="flex items-center gap-2.5 mb-1">
-      <div className="text-[#331568]">{icon}</div>
-      <h3 className="text-sm font-semibold text-[#0E061D] uppercase tracking-wider">{title}</h3>
-      <div className="flex-1 h-px ml-2" style={{ background: "linear-gradient(90deg, #CFCFCF 0%, transparent 100%)" }} />
+    <div className="flex items-center gap-3 mb-2 pt-2">
+      <div className="p-1.5 rounded-lg bg-[#F5F5F5] text-[#331568] shadow-sm border border-[#E9E9E9]">{icon}</div>
+      <h3 className="text-[13px] font-bold text-[#0E061D] uppercase tracking-widest">{title}</h3>
+      <div className="flex-1 h-px ml-3" style={{ background: "linear-gradient(90deg, rgba(51, 21, 104, 0.2) 0%, transparent 100%)" }} />
     </div>
   );
 }
@@ -558,8 +580,8 @@ function GlassInput({
 }) {
   const [focused, setFocused] = useState(false);
   return (
-    <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-xs font-medium text-[#6B6B6B] tracking-wide">
+    <div className="space-y-1.5 group">
+      <label htmlFor={id} className="block text-xs font-semibold text-[#6B6B6B] tracking-wide ml-1 transition-colors group-focus-within:text-[#331568]">
         {label}
         {required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
@@ -573,11 +595,12 @@ function GlassInput({
         {...(type === "email" ? { ftype: "email", autoComplete: "off" } as any : {})}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className="w-full px-4 py-3 rounded-xl text-sm text-[#0E061D] placeholder-[#ABABAB] outline-none transition-all duration-300"
+        className="w-full px-4 py-3.5 rounded-[14px] text-sm text-[#0E061D] placeholder-[#9CA3AF] outline-none transition-all duration-300"
         style={{
-          background: focused ? "#fff" : "#F9F9F9",
-          border: focused ? "1px solid #331568" : "1px solid #CFCFCF",
-          boxShadow: focused ? "0 0 0 3px rgba(51,21,104,.1)" : "none",
+          background: focused ? "#ffffff" : "#F8F9FB",
+          border: focused ? "1px solid #331568" : "1px solid #E8E9EC",
+          boxShadow: focused ? "0 4px 12px rgba(51, 21, 104, 0.08), 0 0 0 3px rgba(51, 21, 104, 0.15)" : "0 2px 5px rgba(0,0,0,0.02) inset",
+          transform: focused ? "translateY(-1px)" : "none"
         }}
         placeholder={`Enter your ${label.replace(" *", "").toLowerCase()}`}
       />
@@ -593,30 +616,30 @@ function GlassSelect({
 }) {
   const [focused, setFocused] = useState(false);
   return (
-    <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-xs font-medium text-[#6B6B6B] tracking-wide">
+    <div className="space-y-1.5 group">
+      <label htmlFor={id} className="block text-xs font-semibold text-[#6B6B6B] tracking-wide ml-1 transition-colors group-focus-within:text-[#331568]">
         {label}
       </label>
-      <div className="relative">
+      <div className="relative transform transition-transform duration-300" style={{ transform: focused ? "translateY(-1px)" : "none" }}>
         <select
           id={id}
           name={name}
           aria-label={name}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          className="w-full appearance-none px-4 py-3 pr-10 rounded-xl text-sm text-[#0E061D] outline-none transition-all duration-300 cursor-pointer"
+          className="w-full appearance-none px-4 py-3.5 pr-10 rounded-[14px] text-sm text-[#0E061D] outline-none transition-all duration-300 cursor-pointer"
           style={{
-            background: focused ? "#fff" : "#F9F9F9",
-            border: focused ? "1px solid #331568" : "1px solid #CFCFCF",
-            boxShadow: focused ? "0 0 0 3px rgba(51,21,104,.1)" : "none",
+            background: focused ? "#ffffff" : "#F8F9FB",
+            border: focused ? "1px solid #331568" : "1px solid #E8E9EC",
+            boxShadow: focused ? "0 4px 12px rgba(51, 21, 104, 0.08), 0 0 0 3px rgba(51, 21, 104, 0.15)" : "0 2px 5px rgba(0,0,0,0.02) inset",
           }}
         >
           {children}
         </select>
         {/* Custom dropdown arrow */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#6B6B6B]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#6B6B6B] group-focus-within:text-[#331568] transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 10.5l3.75 3.75 3.75-3.75" />
           </svg>
         </div>
       </div>
